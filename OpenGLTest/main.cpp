@@ -64,15 +64,24 @@ int main()
          0.0f,  0.5f, 0.0f
     };
     
-    unsigned int VBO;//vertext buffer objects -> Of type GL_ARRAY_BUFFER
+    unsigned int VBO, VAO;//vertext buffer objects -> Of type GL_ARRAY_BUFFER
+    glGenVertexArrays(1, &VAO);
     glGenBuffers(1, &VBO);  //Generate Buffer Objects
+    glBindVertexArray(VAO);
     glBindBuffer(GL_ARRAY_BUFFER, VBO); //Bind a buffer object, to a 'buffer target' in this case GL_ARRAY_BUFFER, and later on we are gonna manipulate on this, for example in the next method
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW); // copy user-defined data into the currently bound buffer, notice the middle two arguments basically just give you the array of vertices; DRAW is the mode
 
+    //then set our vertex attributes pointers
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+    glEnableVertexAttribArray(0);
+    
     // render loop
     // -----------
     while (!glfwWindowShouldClose(window))
     {
+        glUseProgram(shaderProgram);//sets this one as the current active shaderProgram
+        glBindVertexArray(VAO);
+        glDrawArrays(GL_TRIANGLES, 0, 3);
         // input
         // -----
         processInput(window);
