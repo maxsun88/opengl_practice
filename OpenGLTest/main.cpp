@@ -58,19 +58,32 @@ int main()
     //Triangle Stuff Here
     
     //Store data on graphic card
+//    float vertices[] = {
+//        -0.5f, -0.5f, 0.0f,
+//         0.5f, -0.5f, 0.0f,
+//         0.0f,  0.5f, 0.0f
+//    };
+    
     float vertices[] = {
-        -0.5f, -0.5f, 0.0f,
-         0.5f, -0.5f, 0.0f,
-         0.0f,  0.5f, 0.0f
+         0.5f,  0.5f, 0.0f,  // top right
+         0.5f, -0.5f, 0.0f,  // bottom right
+        -0.5f, -0.5f, 0.0f,  // bottom left
+        -0.5f,  0.5f, 0.0f   // top left
+    };
+    unsigned int indices[] = {  // note that we start from 0!
+        0, 1, 3,   // first triangle
+        1, 2, 3    // second triangle
     };
     
-    unsigned int VBO, VAO;//vertext buffer objects -> Of type GL_ARRAY_BUFFER
+    unsigned int VBO, VAO, EBO;//vertext buffer objects -> Of type GL_ARRAY_BUFFER
     glGenVertexArrays(1, &VAO);
     glGenBuffers(1, &VBO);  //Generate Buffer Objects
+    glGenBuffers(1, &EBO);
     glBindVertexArray(VAO);
     glBindBuffer(GL_ARRAY_BUFFER, VBO); //Bind a buffer object, to a 'buffer target' in this case GL_ARRAY_BUFFER, and later on we are gonna manipulate on this, for example in the next method
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW); // copy user-defined data into the currently bound buffer, notice the middle two arguments basically just give you the array of vertices; DRAW is the mode
-
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
     //then set our vertex attributes pointers
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
@@ -79,9 +92,12 @@ int main()
     // -----------
     while (!glfwWindowShouldClose(window))
     {
+        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);//Filling the inside with color or not
         glUseProgram(shaderProgram);//sets this one as the current active shaderProgram
         glBindVertexArray(VAO);
-        glDrawArrays(GL_TRIANGLES, 0, 3);
+//        glDrawArrays(GL_TRIANGLES, 0, 3);
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+        glBindVertexArray(0);
         // input
         // -----
         processInput(window);
