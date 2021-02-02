@@ -33,6 +33,9 @@
 		02913E7C25B792A4008D9679 /* libglfw.3.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libglfw.3.3.dylib; path = ../../../../usr/local/Cellar/glfw/3.3.2/lib/libglfw.3.3.dylib; sourceTree = "<group>"; };
 		02913E7E25B792E3008D9679 /* libGLEW.2.2.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libGLEW.2.2.0.dylib; path = ../../../../usr/local/Cellar/glew/2.2.0_1/lib/libGLEW.2.2.0.dylib; sourceTree = "<group>"; };
 		02913EA625C8D560008D9679 /* glad.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = glad.c; sourceTree = "<group>"; };
+		02913EAE25C8E552008D9679 /* shader_s.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = shader_s.h; sourceTree = "<group>"; };
+		02913EB825C8ED69008D9679 /* shader.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = shader.vs; sourceTree = "<group>"; };
+		02913EB925C8ED83008D9679 /* shader.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = shader.fs; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +72,7 @@
 		02913E7025B791A2008D9679 /* OpenGLTest */ = {
 			isa = PBXGroup;
 			children = (
+				02913EAD25C8E48C008D9679 /* includes */,
 				02913EA925C8D5C9008D9679 /* src */,
 			);
 			path = OpenGLTest;
@@ -89,8 +93,18 @@
 			children = (
 				02913EA625C8D560008D9679 /* glad.c */,
 				02913E7125B791A2008D9679 /* main.cpp */,
+				02913EB825C8ED69008D9679 /* shader.vs */,
+				02913EB925C8ED83008D9679 /* shader.fs */,
 			);
 			path = src;
+			sourceTree = "<group>";
+		};
+		02913EAD25C8E48C008D9679 /* includes */ = {
+			isa = PBXGroup;
+			children = (
+				02913EAE25C8E552008D9679 /* shader_s.h */,
+			);
+			path = includes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
