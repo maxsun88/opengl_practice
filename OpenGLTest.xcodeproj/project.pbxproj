@@ -87,8 +87,8 @@
 		02913EA925C8D5C9008D9679 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				02913E7125B791A2008D9679 /* main.cpp */,
 				02913EA625C8D560008D9679 /* glad.c */,
+				02913E7125B791A2008D9679 /* main.cpp */,
 			);
 			path = src;
 			sourceTree = "<group>";
